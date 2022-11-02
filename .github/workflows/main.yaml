@@ -14,7 +14,7 @@ jobs:
 
     steps:
       # Check-out your repository.
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: Build & Push Image
         run: |
           echo "${{ secrets.DOCKERPW }}" | docker login -u "kujo21" --password-stdin
