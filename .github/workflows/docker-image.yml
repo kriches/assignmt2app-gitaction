@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag kujo21/assignmt2app-gitaction:latest
+    - name: Push the Docker image
+      run: docker login -u kujo21 -p ${{ secrets.DOCKER_TOKEN }} && docker push kujo21/assignmt2app-gitaction:latest
+      
